@@ -1,6 +1,12 @@
 defmodule CGWeb.Router do
   use CGWeb, :router
 
+  pipeline :session, do: plug(CGWeb.Session)
+
+  pipeline :client do
+    plug CGWeb.Middleware.SessionCheck, :client
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
