@@ -1,0 +1,11 @@
+/_build/
+/cover/
+/deps/
+/doc/
+/.fetch
+erl_crash.dump
+*.ez
+chicken_guru_api-*.tar
+mix.lock
+config
+
