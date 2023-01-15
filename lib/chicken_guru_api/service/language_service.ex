@@ -10,8 +10,26 @@ defmodule CG.Service.LanguageService do
     Language.add(attr["language"])
   end
 
-  def list do
-    Language.get_all()
+  def list(attr) do
+    data =
+      if attr == %{} do
+        Language.get_all!()
+      else
+        attr
+        |> Map.to_list()
+        |> Language.get_all()
+      end
+
+    {:ok, data}
+  end
+
+  def update(attr) do
+    required_param(attr, ["id", "language"])
+
+    with {:ok, lang} <- Language.get(code: attr["id"]),
+         {:ok, updated} <- Language.update(attr["language"]) do
+      {:ok, updated}
+    end
   end
 
   def delete(attr) do

@@ -22,12 +22,14 @@ defmodule CGWeb.Router do
       scope "/language" do
         post "/", LanguageController, :create
         get "/", LanguageController, :list
+        patch "/", LanguageController, :update
         delete "/", LanguageController, :delete
       end
 
       scope "/category" do
         post "/", CategoryController, :create
         get "/", CategoryController, :list
+        patch "/", CategoryController, :update
         delete "/", CategoryController, :delete
       end
     end

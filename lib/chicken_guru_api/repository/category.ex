@@ -2,12 +2,13 @@ defmodule CG.Repository.Category do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias CG.Repo
   alias CG.Repository.{Language}
   alias Helper.ChangesetHelper
 
   schema "categories" do
     field(:title, :string)
-    field(:is_folder, :boolean)
+    field(:is_folder, :boolean, default: false)
 
     belongs_to(:language, Language)
     belongs_to(:parent, __MODULE__)

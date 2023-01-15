@@ -1,22 +1,32 @@
 defmodule CGWeb.Controller.CategoryController do
   use CGWeb, :controller
 
-  alias CG.Service.LanguageService
+  alias CG.Service.CategoryService
 
   def create(conn, params) do
-    LanguageService.create(params)
+    params
+    |> CategoryService.create()
     |> check_throw()
     |> response(conn)
   end
 
-  def list(conn, _params) do
-    LanguageService.list()
+  def list(conn, params) do
+    params
+    |> CategoryService.list()
+    |> check_throw()
+    |> response(conn)
+  end
+
+  def update(conn, params) do
+    params
+    |> CategoryService.update()
     |> check_throw()
     |> response(conn)
   end
 
   def delete(conn, params) do
-    LanguageService.delete(params)
+    params
+    |> CategoryService.delete()
     |> check_throw()
     |> response(conn)
   end

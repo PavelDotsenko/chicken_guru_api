@@ -4,7 +4,8 @@ defmodule CGWeb.Controller.AccountController do
   alias CG.Service.AccountService
 
   def create(conn, params) do
-    AccountService.create(params)
+    params
+    |> AccountService.create()
     |> check_throw()
     |> response(conn)
   end

@@ -10,21 +10,34 @@ defmodule CG.Service.CategoryService do
     Category.add(attr["category"])
   end
 
-  def list do
-    Category.get_all()
+  def list(attr) do
+    data =
+      if attr == %{} do
+        Category.get_all!()
+      else
+        attr
+        |> Map.to_list()
+        |> Category.get_all()
+      end
+
+    {:ok, data}
   end
 
   def update(attr) do
-    required_param(attr, "id")
-    required_param(attr, "category")
+    required_param(attr, ["id", "category"])
+
+    with {:ok, category} <- Category.get(attr["id"]),
+         {:ok, updated} <- Category.update(attr["category"]) do
+      {:ok, updated}
+    end
   end
 
   def delete(attr) do
     required_param(attr, "category")
-    required_param(attr["category"], ["code"])
+    required_param(attr["category"], ["id"])
 
-    with {:ok, lang} <- Category.get(code: attr["category"]["code"]) |> IO.inspect(),
-         {:ok, _} <- Category.delete(lang) |> IO.inspect() do
+    with {:ok, category} <- Category.get(attr["category"]["id"]),
+         {:ok, _} <- Category.delete(category) do
       {:ok, "category is deleted"}
     end
   end

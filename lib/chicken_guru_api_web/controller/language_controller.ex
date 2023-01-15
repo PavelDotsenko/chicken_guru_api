@@ -4,19 +4,29 @@ defmodule CGWeb.Controller.LanguageController do
   alias CG.Service.LanguageService
 
   def create(conn, params) do
-    LanguageService.create(params)
+    params
+    |> LanguageService.create()
     |> check_throw()
     |> response(conn)
   end
 
-  def list(conn, _params) do
-    LanguageService.list()
+  def list(conn, params) do
+    params
+    |> LanguageService.list()
+    |> check_throw()
+    |> response(conn)
+  end
+
+  def update(conn, params) do
+    params
+    |> LanguageService.update()
     |> check_throw()
     |> response(conn)
   end
 
   def delete(conn, params) do
-    LanguageService.delete(params)
+    params
+    |> LanguageService.delete()
     |> check_throw()
     |> response(conn)
   end
