@@ -5,7 +5,8 @@ defmodule CG.Repo.Migrations.CreateProducts do
     create table(:products) do
       add(:title, :string)
       add(:weight, :float)
-      add(:unit, references(:units))
+      add(:is_foled, :boolean)
+      add(:unit_id, references(:units))
       add(:language_id, references(:languages))
 
       timestamps()

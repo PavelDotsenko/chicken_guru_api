@@ -1,8 +1,8 @@
-defmodule CG.Repo.Migrations.CreateImages do
+defmodule CG.Repo.Migrations.CreateMedia do
   use Ecto.Migration
 
   def change do
-    create table(:images) do
+    create table(:media) do
       add(:path, :string)
       add(:extension, :string)
       add(:state, :smallint)

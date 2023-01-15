@@ -21,6 +21,8 @@ defmodule CG.Repository.Recipy do
     timestamps()
   end
 
+  use Helper.BaseRepository, repo: CG.Repo
+
   @doc false
   def changeset(recipy, attrs) do
     recipy

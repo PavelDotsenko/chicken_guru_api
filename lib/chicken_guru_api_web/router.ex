@@ -11,8 +11,26 @@ defmodule CGWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", CGWeb do
+  scope "/api/v1", CGWeb.Controller do
     pipe_through :api
+
+    scope "/account" do
+      post "/", AccountController, :create
+    end
+
+    scope "/control" do
+      scope "/language" do
+        post "/", LanguageController, :create
+        get "/", LanguageController, :list
+        delete "/", LanguageController, :delete
+      end
+
+      scope "/category" do
+        post "/", CategoryController, :create
+        get "/", CategoryController, :list
+        delete "/", CategoryController, :delete
+      end
+    end
   end
 
   # Enables the Swoosh mailbox preview in development.

@@ -4,6 +4,7 @@ defmodule CG.Repo.Migrations.CreateCategories do
   def change do
     create table(:categories) do
       add(:title, :string)
+      add(:is_foled, :boolean)
       add(:parent_id, references(:categories))
       add(:language_id, references(:languages))
 

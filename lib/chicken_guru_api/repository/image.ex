@@ -1,14 +1,16 @@
-defmodule CG.Repository.Image do
+defmodule CG.Repository.Media do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "images" do
+  schema "media" do
     field(:extension, :string)
     field(:path, :string)
     field(:state, :integer)
 
     timestamps()
   end
+
+  use Helper.BaseRepository, repo: CG.Repo
 
   @doc false
   def changeset(image, attrs) do

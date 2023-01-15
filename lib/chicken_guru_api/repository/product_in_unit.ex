@@ -2,7 +2,7 @@ defmodule CG.Repository.ProductInUnit do
   use Ecto.Schema
   import Ecto.Changeset
 
-  import CG.Repository.{Recipy, Product, Unit}
+  alias CG.Repository.{Recipy, Product, Unit}
 
   schema "product_in_units" do
     field(:quantity, :float)
@@ -13,6 +13,8 @@ defmodule CG.Repository.ProductInUnit do
 
     timestamps()
   end
+
+  use Helper.BaseRepository, repo: CG.Repo
 
   @doc false
   def changeset(product_in_unit, attrs) do

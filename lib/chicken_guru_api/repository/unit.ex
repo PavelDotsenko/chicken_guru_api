@@ -13,6 +13,8 @@ defmodule CG.Repository.Unit do
     timestamps()
   end
 
+  use Helper.BaseRepository, repo: CG.Repo
+
   @doc false
   def changeset(unit, attrs) do
     unit

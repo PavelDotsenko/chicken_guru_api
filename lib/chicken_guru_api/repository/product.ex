@@ -8,11 +8,14 @@ defmodule CG.Repository.Product do
     field(:title, :string)
     field(:unit, :string)
     field(:weight, :float)
+    field(:is_folder, :boolean)
 
     belongs_to(:language, Language)
 
     timestamps()
   end
+
+  use Helper.BaseRepository, repo: CG.Repo
 
   @doc false
   def changeset(product, attrs) do

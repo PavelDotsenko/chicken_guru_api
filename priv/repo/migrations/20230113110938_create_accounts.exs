@@ -8,8 +8,7 @@ defmodule CG.Repo.Migrations.CreateAccounts do
       add(:name, :string)
       add(:about, :text)
       add(:is_admin, :boolean, default: false, null: false)
-      add(:state, :integer)
-      add(:avatar_id, references(:images))
+      add(:avatar_id, references(:media))
       add(:language_id, references(:languages))
       add(:state, :smallint)
 

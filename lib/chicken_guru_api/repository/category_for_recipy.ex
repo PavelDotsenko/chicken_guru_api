@@ -11,6 +11,8 @@ defmodule CG.Repository.CategoryForRecipy do
     timestamps()
   end
 
+  use Helper.BaseRepository, repo: CG.Repo
+
   @doc false
   def changeset(category_for_recipy, attrs) do
     category_for_recipy
