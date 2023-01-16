@@ -18,9 +18,9 @@ defmodule CGWeb.Session do
     |> authenticate(conn)
   end
 
-  defp authenticate({:ok, %{type: :client, secret_key: key, id: id, data: data}}, conn) do
-    ApiCore.Repository.Account.get(id: id, code: key)
-    |> case do
+  defp authenticate({:ok, %{type: :client, secret_key: _key, id: _id, data: data}}, conn) do
+    # ApiCore.Repository.Account.get(id: id, code: key)
+    case data do
       {:ok, _} ->
         Map.put(conn, :private, Map.merge(conn.private, %{plug_session: %{"client" => data}}))
 

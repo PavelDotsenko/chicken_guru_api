@@ -4,7 +4,7 @@ defmodule CG.Service.CategoryService do
   alias CG.Repository.Category
 
   def create(attr) do
-    required_param(attr, "category")
+    required_param(attr["category"], "category is empty")
     required_param(attr["category"], ["title", "language_id"])
 
     Category.add(attr["category"])
@@ -27,7 +27,7 @@ defmodule CG.Service.CategoryService do
     required_param(attr, ["id", "category"])
 
     with {:ok, category} <- Category.get(attr["id"]),
-         {:ok, updated} <- Category.update(attr["category"]) do
+         {:ok, updated} <- Category.update(category, attr["category"]) do
       {:ok, updated}
     end
   end

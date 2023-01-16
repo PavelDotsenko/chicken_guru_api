@@ -4,7 +4,7 @@ defmodule CG.Service.LanguageService do
   alias CG.Repository.Language
 
   def create(attr) do
-    required_param(attr, "language")
+    required_param(attr["language"], "language is empty")
     required_param(attr["language"], ["code", "title"])
 
     Language.add(attr["language"])
@@ -27,7 +27,7 @@ defmodule CG.Service.LanguageService do
     required_param(attr, ["id", "language"])
 
     with {:ok, lang} <- Language.get(code: attr["id"]),
-         {:ok, updated} <- Language.update(attr["language"]) do
+         {:ok, updated} <- Language.update(lang, attr["language"]) do
       {:ok, updated}
     end
   end
