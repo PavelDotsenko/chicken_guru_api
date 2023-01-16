@@ -6,6 +6,7 @@ defmodule CG.Repo.Migrations.CreateProducts do
       add(:title, :string)
       add(:weight, :float)
       add(:is_folder, :boolean)
+      add(:parent_id, references(:products))
       add(:unit_id, references(:units))
       add(:language_id, references(:languages))
 

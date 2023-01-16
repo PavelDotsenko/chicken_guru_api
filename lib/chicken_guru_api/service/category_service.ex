@@ -13,11 +13,11 @@ defmodule CG.Service.CategoryService do
   def list(attr) do
     data =
       if attr == %{} do
-        Category.get_all!()
+        Category.Db.list()
       else
         attr
         |> Map.to_list()
-        |> Category.get_all()
+        |> Category.Db.list()
       end
 
     {:ok, data}

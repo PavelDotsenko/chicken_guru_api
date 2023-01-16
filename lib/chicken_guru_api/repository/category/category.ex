@@ -9,9 +9,11 @@ defmodule CG.Repository.Category do
   schema "categories" do
     field(:title, :string)
     field(:is_folder, :boolean, default: false)
+    field(:parent_id, :integer)
+    field(:children_count, :integer, virtual: true)
 
     belongs_to(:language, Language)
-    belongs_to(:parent, __MODULE__)
+
     has_many(:children, __MODULE__, foreign_key: :parent_id)
 
     timestamps()

@@ -20,11 +20,63 @@ alias CG.Service.{LanguageService, CategoryService, AccountService}
   }
   |> LanguageService.create()
 
-{:ok, _category} =
+{:ok, category} =
   %{
     "category" => %{
       "title" => "Первые блюда",
-      "language_id" => lang.id
+      "language_id" => lang.id,
+      "is_folder" => true
+    }
+  }
+  |> CategoryService.create()
+
+{:ok, _category} =
+  %{
+    "category" => %{
+      "title" => "Вторые блюда",
+      "language_id" => lang.id,
+      "is_folder" => true
+    }
+  }
+  |> CategoryService.create()
+
+{:ok, category2} =
+  %{
+    "category" => %{
+      "title" => "Холодные супы",
+      "language_id" => lang.id,
+      "parent_id" => category.id,
+      "is_folder" => true
+    }
+  }
+  |> CategoryService.create()
+
+{:ok, category3} =
+  %{
+    "category" => %{
+      "title" => "Борщи",
+      "language_id" => lang.id,
+      "parent_id" => category2.id
+    }
+  }
+  |> CategoryService.create()
+
+  {:ok, category3} =
+    %{
+      "category" => %{
+        "title" => "Зеленые борщи",
+        "language_id" => lang.id,
+        "parent_id" => category3.id
+      }
+    }
+    |> CategoryService.create()
+
+{:ok, _category} =
+  %{
+    "category" => %{
+      "title" => "Похлебки",
+      "language_id" => lang.id,
+      "parent_id" => category.id
     }
   }
   |> CategoryService.create()
